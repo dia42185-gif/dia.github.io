@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio — Abdou Latif DIA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,600;1,300;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0B0E15;
+      --surface:#131720;
+      --surface2:#1B2033;
+      --gold:#C4A24A;
+      --gold-d:rgba(196,162,74,.12);
+      --gold-b:rgba(196,162,74,.28);
+      --text:#EAE5D8;
+      --text2:#8892A4;
+      --blue:#4C9EDB;
+      --blue-d:rgba(76,158,219,.1);
+      --border:rgba(255,255,255,.06);
+      --green:#52B788;
+      --orange:#E07B39;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+
+    /* Lucide icons sizing */
+    [data-lucide]{width:18px;height:18px;stroke:currentColor;stroke-width:1.75;flex-shrink:0;display:block}
+    .ico-lg [data-lucide]{width:26px;height:26px;stroke-width:1.5}
+    .ico-sm [data-lucide]{width:15px;height:15px}
+
+    /* ── NAV ── */
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:999;
+      height:60px;display:flex;align-items:center;justify-content:space-between;
+      padding:0 clamp(1.5rem,6vw,5rem);
+      background:rgba(11,14,21,.88);backdrop-filter:blur(18px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-brand{font-family:'Cormorant Garant',serif;font-size:1.12rem;font-weight:600;color:var(--text);text-decoration:none;letter-spacing:.04em}
+    .nav-brand span{color:var(--gold)}
+    .nav-links{list-style:none;display:flex;gap:2rem}
+    .nav-links a{font-size:.74rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text2);text-decoration:none;transition:color .2s}
+    .nav-links a:hover{color:var(--gold)}
+    .nav-cta{font-size:.74rem;font-weight:600;padding:.42rem 1.1rem;border:1px solid var(--gold-b);color:var(--gold);text-decoration:none;border-radius:3px;letter-spacing:.1em;text-transform:uppercase;transition:all .2s}
+    .nav-cta:hover{background:var(--gold-d)}
+
+    /* ── HERO ── */
+    #hero{
+      min-height:100vh;display:flex;align-items:center;
+      padding:88px clamp(1.5rem,6vw,5rem) 4rem;
+      position:relative;z-index:1;
+    }
+    .hero-inner{
+      width:100%;display:grid;
+      grid-template-columns:1fr 310px;
+      gap:4rem;align-items:center;
+    }
+    .hero-eyebrow{
+      display:inline-flex;align-items:center;gap:.75rem;
+      font-size:.72rem;font-weight:600;letter-spacing:.2em;
+      text-transform:uppercase;color:var(--gold);margin-bottom:1.6rem;
+    }
+    .hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold)}
+    h1.hero-name{
+      font-family:'Cormorant Garant',serif;
+      font-size:clamp(3.4rem,7.5vw,6.8rem);
+      font-weight:300;font-style:italic;
+      line-height:.95;letter-spacing:-.02em;color:var(--text);
+      margin-bottom:1.75rem;
+    }
+    h1.hero-name strong{font-weight:600;font-style:normal;display:block;color:var(--gold)}
+    .hero-desc{font-size:clamp(.9rem,1.5vw,1rem);color:var(--text2);font-weight:300;max-width:480px;margin-bottom:2.5rem;line-height:1.85}
+    .hero-desc b{color:var(--text);font-weight:500}
+    .hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+
+    .btn-gold{display:inline-flex;align-items:center;gap:.5rem;padding:.72rem 1.65rem;background:var(--gold);color:var(--bg);font-size:.78rem;font-weight:600;text-decoration:none;border-radius:3px;letter-spacing:.08em;text-transform:uppercase;transition:all .22s}
+    .btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(196,162,74,.3)}
+    .btn-outline{display:inline-flex;align-items:center;gap:.5rem;padding:.72rem 1.65rem;background:transparent;color:var(--text);font-size:.78rem;font-weight:500;text-decoration:none;border-radius:3px;border:1px solid var(--border);letter-spacing:.08em;text-transform:uppercase;transition:all .22s}
+    .btn-outline:hover{border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.03)}
+
+    .hero-stack{display:flex;flex-direction:column;gap:.75rem}
+    .hero-badge{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.9rem 1.25rem;display:flex;align-items:center;gap:.85rem;transition:all .3s;cursor:default}
+    .hero-badge:hover{border-color:var(--gold-b);transform:translateX(-4px)}
+    .hero-badge .hb-icon{color:var(--gold);display:flex;align-items:center}
+    .hero-badge .hb-icon [data-lucide]{width:20px;height:20px;stroke-width:1.5}
+    .hero-badge .hb-title{font-size:.8rem;font-weight:500;color:var(--text)}
+    .hero-badge .hb-sub{font-size:.7rem;color:var(--text2)}
+
+    /* ── SECTION WRAP ── */
+    .sw{max-width:1100px;margin:0 auto;padding:clamp(4rem,7vw,6.5rem) clamp(1.5rem,6vw,5rem);border-top:1px solid var(--border);position:relative;z-index:1}
+    .sh{display:flex;align-items:flex-start;gap:2rem;margin-bottom:3rem}
+    .sn{font-family:'Cormorant Garant',serif;font-size:3.8rem;font-weight:300;color:var(--gold);opacity:.22;line-height:1;flex-shrink:0;margin-top:-.4rem}
+    .sl{font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+    h2.st{font-family:'Cormorant Garant',serif;font-size:clamp(1.8rem,3.5vw,2.7rem);font-weight:600;font-style:italic;line-height:1.2;color:var(--text)}
+
+    /* ── ABOUT ── */
+    .about-g{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+    .about-t p{color:var(--text2);margin-bottom:1.25rem;font-weight:300;font-size:.95rem}
+    .about-t p b{color:var(--text);font-weight:500}
+    .stats{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .sc{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.4rem;transition:border-color .2s}
+    .sc:hover{border-color:var(--gold-b)}
+    .sc .n{font-family:'Cormorant Garant',serif;font-size:2.6rem;font-weight:300;color:var(--gold);line-height:1;margin-bottom:.2rem}
+    .sc .l{font-size:.7rem;color:var(--text2);text-transform:uppercase;letter-spacing:.08em}
+
+    /* ── SKILLS ── */
+    .sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:1rem}
+    .skc{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.65rem;position:relative;overflow:hidden;transition:all .3s}
+    .skc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+    .skc:hover::after{transform:scaleX(1)}
+    .skc:hover{border-color:rgba(255,255,255,.11);transform:translateY(-3px);box-shadow:0 14px 36px rgba(0,0,0,.35)}
+    .sk-ico{color:var(--gold);margin-bottom:.9rem;display:flex}
+    .sk-ico [data-lucide]{width:28px;height:28px;stroke-width:1.5}
+    .sk-nm{font-weight:600;font-size:.88rem;margin-bottom:.7rem;color:var(--text)}
+    .tags{display:flex;flex-wrap:wrap;gap:.35rem}
+    .tag{background:var(--blue-d);color:var(--blue);font-size:.68rem;font-weight:500;padding:.2rem .6rem;border-radius:100px;border:1px solid rgba(76,158,219,.18)}
+
+    /* ── CERTIFICATIONS ── */
+    .cg{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:1rem}
+    .cc{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.65rem;position:relative;overflow:hidden;transition:all .3s}
+    .cc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+    .cc.nv::before{background:#76B900}
+    .cc.cs::before{background:#1BA0D7}
+    .cc.ms1::before{background:#00A4EF}
+    .cc.ms2::before{background:#7FBA00}
+    .cc:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(0,0,0,.35);border-color:rgba(255,255,255,.11)}
+    .cw{font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text2);margin-bottom:.35rem}
+    .ct{font-weight:500;font-size:.86rem;color:var(--text);line-height:1.45;margin-bottom:.8rem}
+    .cp{display:inline-flex;align-items:center;gap:.35rem;font-size:.68rem;font-weight:500;padding:.2rem .6rem;border-radius:100px}
+    .cp [data-lucide]{width:12px;height:12px}
+    .cp.ok{background:rgba(82,183,136,.13);color:var(--green)}
+    .cp.bdg{background:rgba(224,123,57,.13);color:var(--orange)}
+
+    /* ── PROJECTS ── */
+    .proj-ph{border:1px dashed rgba(255,255,255,.09);border-radius:12px;padding:6rem 2rem;text-align:center}
+    .proj-ph .ph-i{color:var(--gold);opacity:.3;margin:0 auto 1rem;display:flex;justify-content:center}
+    .proj-ph .ph-i [data-lucide]{width:44px;height:44px;stroke-width:1.2}
+    .proj-ph h3{font-family:'Cormorant Garant',serif;font-size:1.6rem;font-style:italic;font-weight:300;margin-bottom:.5rem;color:var(--text)}
+    .proj-ph p{font-size:.86rem;color:var(--text2);font-weight:300}
+
+    /* ── EDUCATION ── */
+    .edu-tl{position:relative;padding-left:2rem}
+    .edu-tl::before{content:'';position:absolute;left:0;top:.5rem;bottom:.5rem;width:1px;background:linear-gradient(to bottom,rgba(196,162,74,.5),rgba(196,162,74,.05))}
+    .ei{position:relative;padding:0 0 2.5rem 2rem}
+    .ei::before{content:'';position:absolute;left:-2rem;top:.55rem;width:7px;height:7px;border-radius:50%;background:var(--gold);opacity:.55;transform:translateX(50%)}
+    .ey{font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);opacity:.8;margin-bottom:.3rem}
+    .ed{font-weight:500;font-size:.92rem;color:var(--text);margin-bottom:.18rem}
+    .ep{font-size:.82rem;color:var(--text2);font-weight:300}
+
+    /* ── FOOTER ── */
+    footer{background:var(--surface);border-top:1px solid var(--border);padding:5rem clamp(1.5rem,6vw,5rem);text-align:center;position:relative;z-index:1}
+    footer h2{font-family:'Cormorant Garant',serif;font-size:clamp(2rem,4vw,3rem);font-weight:300;font-style:italic;color:var(--text);margin-bottom:.75rem}
+    footer > p{font-size:.86rem;color:var(--text2);margin-bottom:2.5rem;font-weight:300}
+    .cr{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+    .cl{display:inline-flex;align-items:center;gap:.5rem;color:var(--text2);text-decoration:none;font-size:.8rem;padding:.62rem 1.2rem;border:1px solid var(--border);border-radius:4px;transition:all .2s}
+    .cl [data-lucide]{width:15px;height:15px}
+    .cl:hover{color:var(--gold);border-color:var(--gold-b);background:var(--gold-d)}
+    .fc{margin-top:3rem;font-size:.7rem;color:rgba(255,255,255,.12)}
+
+    /* ── SCROLL REVEAL ── */
+    .rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+    .rv.vis{opacity:1;transform:translateY(0)}
+    .rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}.rv.d4{transition-delay:.4s}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+    .fu{opacity:0;animation:fadeUp .7s ease forwards}
+    .fd1{animation-delay:.15s}.fd2{animation-delay:.3s}.fd3{animation-delay:.45s}
+    .fd4{animation-delay:.2s}.fd5{animation-delay:.35s}.fd6{animation-delay:.5s}.fd7{animation-delay:.65s}
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:768px){
+      .hero-inner{grid-template-columns:1fr}
+      .hero-stack{flex-direction:row;flex-wrap:wrap}
+      .about-g{grid-template-columns:1fr;gap:2.5rem}
+      .nav-links{display:none}
+      .sn{display:none}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-brand">Abdou Latif&nbsp;<span>DIA</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#skills">Compétences</a></li>
+    <li><a href="#certs">Certifications</a></li>
+    <li><a href="#projects">Projets</a></li>
+    <li><a href="#education">Formation</a></li>
+  </ul>
+  <a href="cv.html" class="nav-cta">Mon CV</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow fu fd1">Étudiant en Développement &amp; Administration d'Applications  · Sénégal</div>
+      <h1 class="hero-name fu fd2">Abdou Latif<br><strong>DIA</strong></h1>
+      <p class="hero-desc fu fd3">
+        Étudiant en <b>Licence 2 Développement &amp; Administration d'Applications</b>
+        à l'Université Alioune Diop de Bambey. Passionné par le développement web,
+        l'intelligence artificielle et les réseaux informatiques.
+      </p>
+      <div class="hero-btns fu fd3">
+        <a href="#projects" class="btn-gold">Mes projets</a>
+        <a href="cv.html" class="btn-outline">Voir le CV</a>
+      </div>
+    </div>
+
+    <div class="hero-stack">
+      <div class="hero-badge fu fd4">
+        <span class="hb-icon"><i data-lucide="graduation-cap"></i></span>
+        <div><div class="hb-title">Licence 2 · UAD Bambey</div><div class="hb-sub">Développement &amp; Admin d'Apps</div></div>
+      </div>
+      <div class="hero-badge fu fd5">
+        <span class="hb-icon"><i data-lucide="cpu"></i></span>
+        <div><div class="hb-title">NVIDIA Certified</div><div class="hb-sub">Fundamentals of Deep Learning</div></div>
+      </div>
+      <div class="hero-badge fu fd6">
+        <span class="hb-icon"><i data-lucide="network"></i></span>
+        <div><div class="hb-title">Cisco Certified</div><div class="hb-sub">Packet Tracer</div></div>
+      </div>
+      <div class="hero-badge fu fd7">
+        <span class="hb-icon"><i data-lucide="cloud"></i></span>
+        <div><div class="hb-title">Microsoft Learn</div><div class="hb-sub">2 badges obtenus</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div class="sw" id="about">
+  <div class="sh rv">
+    <div class="sn">01</div>
+    <div><div class="sl">À propos</div><h2 class="st">Qui suis-je ?</h2></div>
+  </div>
+  <div class="about-g">
+    <div class="about-t rv d1">
+      <p>Étudiant en <b>Développement et Administration d'Applications</b> à l'Université Alioune Diop de Bambey, titulaire d'un <b>Baccalauréat Série S2</b> obtenu en 2024.</p>
+      <p>Mon parcours combine la programmation, les bases de données, l'administration système et les réseaux. Je complète ma formation avec des certifications internationales auprès de <b>NVIDIA, Cisco et Microsoft</b>.</p>
+      <p>Motivé par la contribution au <b>développement numérique de l'Afrique</b>, je suis en quête de stages et de collaborations pour mettre en pratique mes compétences.</p>
+    </div>
+    <div class="stats rv d2">
+      <div class="sc"><div class="n">2</div><div class="l">Années universitaires</div></div>
+      <div class="sc"><div class="n">4</div><div class="l">Accréditations</div></div>
+      <div class="sc"><div class="n">4</div><div class="l">Domaines techniques</div></div>
+      <div class="sc"><div class="n">∞</div><div class="l">Curiosité &amp; apprentissage</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<div class="sw" id="skills">
+  <div class="sh rv">
+    <div class="sn">02</div>
+    <div>
+      <div class="sl">Compétences</div>
+      <h2 class="st">Expertise technique</h2>
+    </div>
+  </div>
+
+  <div class="sg">
+
+    <div class="skc rv d1">
+      <div class="sk-ico"><i data-lucide="globe"></i></div>
+      <div class="sk-nm">Développement Web</div>
+
+      <div class="tags">
+        <span class="tag">HTML5</span>
+        <span class="tag">CSS3</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">React</span>
+        <span class="tag">Next.js</span>
+        <span class="tag">PHP</span>
+        <span class="tag">Laravel</span>
+        <span class="tag">Tailwind CSS</span>
+      </div>
+    </div>
+
+    <div class="skc rv d2">
+      <div class="sk-ico"><i data-lucide="brain"></i></div>
+      <div class="sk-nm">Python & IA / Machine Learning</div>
+
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag">Deep Learning</span>
+        <span class="tag">Réseaux neuronaux</span>
+      </div>
+    </div>
+
+    <div class="skc rv d3">
+      <div class="sk-ico"><i data-lucide="database"></i></div>
+      <div class="sk-nm">Bases de données</div>
+
+      <div class="tags">
+        <span class="tag">SQL</span>
+        <span class="tag">MySQL</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">Modélisation BDD</span>
+      </div>
+    </div>
+
+    <div class="skc rv d4">
+      <div class="sk-ico"><i data-lucide="wifi"></i></div>
+      <div class="sk-nm">Réseaux informatiques</div>
+
+      <div class="tags">
+        <span class="tag">Cisco Packet Tracer</span>
+        <span class="tag">TCP/IP</span>
+        <span class="tag">Routage</span>
+      </div>
+    </div>
+
+    <div class="skc rv d5">
+      <div class="sk-ico"><i data-lucide="server"></i></div>
+      <div class="sk-nm">DevOps & Outils</div>
+
+      <div class="tags">
+        <span class="tag">Docker</span>
+        <span class="tag">Git</span>
+        <span class="tag">GitHub</span>
+        <span class="tag">Linux</span>
+        <span class="tag">MySQL</span>
+        <span class="tag">PgSQL</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CERTIFICATIONS -->
+<div class="sw" id="certs">
+  <div class="sh rv">
+    <div class="sn">03</div>
+    <div><div class="sl">Certifications &amp; Badges</div><h2 class="st">Mes accréditations</h2></div>
+  </div>
+  <div class="cg">
+    <div class="cc nv rv d1">
+      <div class="cw">NVIDIA</div>
+      <div class="ct">Fundamentals of Deep Learning</div>
+      <span class="cp ok"><i data-lucide="check-circle"></i> Certificat</span>
+    </div>
+    <div class="cc cs rv d2">
+      <div class="cw">Cisco</div>
+      <div class="ct">Getting Started with Cisco Packet Tracer</div>
+      <span class="cp ok"><i data-lucide="check-circle"></i> Certificat</span>
+    </div>
+    <div class="cc ms1 rv d3">
+      <div class="cw">Microsoft Learn</div>
+      <div class="ct">Écrire vos premières lignes de code en C#</div>
+      <span class="cp bdg"><i data-lucide="award"></i> Badge</span>
+    </div>
+    <div class="cc ms2 rv d4">
+      <div class="cw">Microsoft Learn</div>
+      <div class="ct">Décrire les avantages des services cloud</div>
+      <span class="cp bdg"><i data-lucide="award"></i> Badge</span>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<div class="sw" id="projects">
+  <div class="sh rv">
+    <div class="sn">04</div>
+    <div><div class="sl">Projets</div><h2 class="st">Mes réalisations</h2></div>
+  </div>
+  <div class="proj-ph rv">
+    <div class="ph-i"><i data-lucide="folder-open"></i></div>
+    <h3>Projets en cours de développement</h3>
+    <p>Cette section sera mise à jour prochainement avec mes projets personnels et académiques.</p>
+  </div>
+</div>
+
+<!-- EDUCATION -->
+<div class="sw" id="education">
+  <div class="sh rv">
+    <div class="sn">05</div>
+    <div><div class="sl">Formation</div><h2 class="st">Parcours académique</h2></div>
+  </div>
+  <div class="edu-tl">
+    <div class="ei rv d1">
+      <div class="ey">2026 – En cours</div>
+      <div class="ed">Licence 2 – Développement &amp; Administration d'Applications</div>
+      <div class="ep">Université Alioune Diop de Bambey, Sénégal</div>
+    </div>
+    <div class="ei rv d2">
+      <div class="ey">2024</div>
+      <div class="ed">Baccalauréat Série S2</div>
+      <div class="ep">Sénégal</div>
+    </div>
+    <div class="ei rv d3">
+      <div class="ey">2021</div>
+      <div class="ed">CFEE – Certificat de Fin d'Études Élémentaires</div>
+      <div class="ep">Sénégal</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <h2 class="rv">Travaillons ensemble</h2>
+  <p class="rv d1">Disponible pour des stages, projets et collaborations</p>
+  <div class="cr rv d2">
+    <a href="mailto:fullstackdev202@gmail.com" class="cl"><i data-lucide="mail"></i> Email</a>
+    <a href="https://github.com/dia.github.io" target="_blank" class="cl"><i data-lucide="github"></i> GitHub</a>
+    <!--<a href="https://linkedin.com/in/votre-profil" target="_blank" class="cl"><i data-lucide="linkedin"></i> LinkedIn</a>-->
+  </div>
+  <p class="fc">© 2026 Abdou Latif DIA · Université Alioune Diop de Bambey</p>
+</footer>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script>
+  lucide.createIcons();
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('vis'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
