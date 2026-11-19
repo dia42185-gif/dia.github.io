@@ -1,0 +1,75 @@
+/* CV — une seule colonne, texte réel, titres standards : lisible par les ATS.
+   Le vert sert de repère (nom, filets, titres), jamais de fond. */
+@font-face{font-family:"Fraunces";src:url("../fonts/fraunces-latin-wght-normal.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Instrument Sans";src:url("../fonts/instrument-sans-latin-wght-normal.woff2") format("woff2");font-weight:400 700;font-style:normal;font-display:swap}
+
+:root{--green:#1b4a31;--green-2:#2f7a50;--ink:#12211a;--muted:#46594b;--rule:#cfd8cb;--paper:#fff;--bg:#e9ece4}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Instrument Sans",system-ui,sans-serif;font-size:10.5pt;line-height:1.45;-webkit-font-smoothing:antialiased}
+p,h1,h2,h3,ul,dl,dd{margin:0}
+ul{padding:0;list-style:none}
+a{color:var(--green);text-underline-offset:2px}
+:focus-visible{outline:2px solid var(--green-2);outline-offset:3px}
+
+.toolbar{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.7rem clamp(1rem,4vw,2.5rem);background:#0c1f15}
+.tb-link{color:#d3dccf;text-decoration:none;font-size:.9rem}
+.tb-link:hover{color:#c4e88a}
+.tb-actions{display:flex;gap:.6rem;flex-wrap:wrap}
+.tb-btn{background:#c4e88a;color:#0c1f15;text-decoration:none;font-weight:500;font-size:.88rem;padding:.5rem .95rem;border-radius:2px}
+.tb-btn:hover{background:#d5f0a3}
+.tb-ghost{background:transparent;color:#d3dccf;border:1px solid rgba(255,255,255,.25)}
+.tb-ghost:hover{background:transparent;color:#c4e88a;border-color:#c4e88a}
+
+.sheet{width:210mm;max-width:100%;margin:1.75rem auto 3rem;background:var(--paper);padding:15mm 16mm 14mm;box-shadow:0 6px 30px rgba(12,31,21,.14)}
+
+.cv-head{padding-bottom:5mm;border-bottom:2px solid var(--green)}
+.cv-head h1{font-family:"Fraunces",Georgia,serif;font-weight:400;font-size:27pt;line-height:1.05;letter-spacing:-.02em;color:var(--green)}
+.role{margin-top:2mm;font-size:11.5pt;font-weight:500}
+.contact{margin-top:2.5mm;display:flex;flex-wrap:wrap;gap:0 4mm;font-size:9.5pt;color:var(--muted)}
+.contact span+span::before{content:"·";margin-right:4mm;color:var(--green-2)}
+
+section{margin-top:5.5mm;break-inside:avoid}
+h2{font-family:"Instrument Sans",system-ui,sans-serif;font-size:9pt;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green);padding-bottom:1.2mm;margin-bottom:2.5mm;border-bottom:1px solid var(--rule)}
+
+.row{display:grid;grid-template-columns:40mm 1fr;gap:0 4mm;margin-bottom:2.2mm}
+.when{font-size:9.5pt;color:var(--muted)}
+.what{font-weight:600}
+.where{font-size:10pt;color:var(--muted)}
+
+.skills>div{display:grid;grid-template-columns:40mm 1fr;gap:0 4mm;margin-bottom:1.3mm}
+.skills dt{font-weight:600}
+
+#cv-certs{display:grid;gap:2.6mm}
+.cert-group{break-inside:avoid}
+.cert-group h3{font-size:9.5pt;font-weight:600;color:var(--green-2);margin-bottom:.8mm}
+.cert-group li{font-size:9.7pt;padding-left:3.5mm;position:relative;margin-bottom:.6mm;color:var(--muted)}
+.cert-group li::before{content:"";position:absolute;left:0;top:.55em;width:1.6mm;height:1.6mm;background:var(--green-2)}
+.cert-group li strong{color:var(--ink);font-weight:600}
+
+.two{display:grid;grid-template-columns:1fr 1.6fr;gap:6mm}
+
+@page{size:A4;margin:0}
+@media print{
+  body{background:#fff;font-size:9.3pt;line-height:1.32}
+  .no-print{display:none!important}
+  .sheet{margin:0;width:210mm;box-shadow:none;padding:9mm 13mm 7mm}
+  .cv-head{padding-bottom:3.5mm}
+  .cv-head h1{font-size:24pt}
+  .role{font-size:11pt}
+  section{margin-top:3.4mm}
+  h2{margin-bottom:2mm}
+  .row{margin-bottom:1.6mm}
+  .cert-group li{font-size:8.9pt;margin-bottom:.2mm}
+  .skills>div{margin-bottom:.8mm}
+  .where{font-size:9.3pt}
+  #cv-certs{gap:1.5mm}
+  .two{grid-template-columns:1fr 1.5fr}
+  a{text-decoration:none}
+}
+@media (max-width:640px){
+  .sheet{padding:1.25rem 1.1rem;margin:0 auto}
+  .row,.skills>div,.two{grid-template-columns:1fr}
+  .when{margin-bottom:.1rem}
+  .skills dt{margin-top:.5rem}
+  .cv-head h1{font-size:24pt}
+}
